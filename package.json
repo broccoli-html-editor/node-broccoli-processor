@@ -1,0 +1,31 @@
+{
+  "name": "broccoli-processor",
+  "version": "0.0.1-alpha.1+nb",
+  "description": "Contents processor for broccoli-html-editor.",
+  "main": "libs/main.js",
+  "scripts": {
+    "start": "gulp watch",
+    "submodules-update": "rm -rfv node_modules/px2style; npm install; gulp;",
+    "test": "mocha --ui tdd ./tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pickles2/node-broccoli-processor.git"
+  },
+  "author": "Tomoya Koyanagi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pickles2/node-broccoli-processor/issues"
+  },
+  "homepage": "https://github.com/pickles2/node-broccoli-processor#readme",
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "fs-extra": "^0.24.0",
+    "iterate79": "0.0.1",
+    "phpjs": "^1.3.2",
+    "utils79": "0.0.1-alpha.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0"
+  }
+}
