@@ -1,0 +1,86 @@
+{
+ "bowl": {
+  "main": {
+   "modId": "_sys/root",
+   "fields": {
+    "main": [
+     {
+      "modId": "FESS:units/cols2",
+      "fields": {
+       "column1": [
+        {
+         "modId": "FESS:units/cols2",
+         "fields": {
+          "column1": [
+           {
+            "modId": "PlainHTMLElements:PlainHTML/MultiText",
+            "fields": {
+             "main": {
+              "src": "4からむ、ではありません。",
+              "editor": "markdown"
+             }
+            },
+            "anchor": "",
+            "dec": ""
+           }
+          ],
+          "column2": [
+           {
+            "modId": "PlainHTMLElements:PlainHTML/MultiText",
+            "fields": {
+             "main": {
+              "src": "4からむ、ではありません。",
+              "editor": "markdown"
+             }
+            },
+            "anchor": "",
+            "dec": ""
+           }
+          ]
+         }
+        }
+       ],
+       "column2": [
+        {
+         "modId": "FESS:units/cols2",
+         "fields": {
+          "column1": [
+           {
+            "modId": "PlainHTMLElements:PlainHTML/MultiText",
+            "fields": {
+             "main": {
+              "src": "4からむ、ではありません。",
+              "editor": "markdown"
+             }
+            },
+            "anchor": "",
+            "dec": ""
+           }
+          ],
+          "column2": [
+           {
+            "modId": "PlainHTMLElements:PlainHTML/MultiText",
+            "fields": {
+             "main": {
+              "src": "4からむ、ではありません。",
+              "editor": "markdown"
+             }
+            },
+            "anchor": "",
+            "dec": ""
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "secondly": {
+   "modId": "_sys/root",
+   "fields": {}
+  }
+ }
+}
