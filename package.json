@@ -5,7 +5,7 @@
   "main": "libs/main.js",
   "scripts": {
     "start": "gulp watch",
-    "submodules-update": "rm -rfv node_modules/px2style; npm install; gulp;",
+    "submodules-update": "rm -rfv node_modules/broccoli-html-editor; npm install; gulp;",
     "test": "mocha --ui tdd ./tests/"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "utils79": "0.0.1-alpha.2"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
     "mocha": "^2.1.0"
   }
 }
