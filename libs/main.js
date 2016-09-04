@@ -1,11 +1,12 @@
 /**
  * broccoli-processor
  */
-module.exports = function(options){
+module.exports = function(broccoli, options){
 	var _this = this;
 	var fs = require('fs');
 	var Promise = require("es6-promise").Promise;
 	var it79 = require('iterate79');
+	this.broccoli = broccoli;
 	this.options = options;
 
 	/**
@@ -14,7 +15,7 @@ module.exports = function(options){
 	this.each = function(each, callback){
 		callback = callback || function(){};
 		// console.log(this.options);
-		var json = fs.readFileSync(this.options.realpathDataDir+'/data.json').toString();
+		var json = fs.readFileSync(this.broccoli.realpathDataDir+'/data.json').toString();
 		json = JSON.parse(json);
 		console.log(json);
 
@@ -22,28 +23,32 @@ module.exports = function(options){
 			console.log(row);
 			console.log(idx);
 
-			it79.ary(
-				row.fields,
-				function( it1, childFields, childsIdx ){
-					it79.ary(
-						childFields,
-						function( it2, childField, childIdx ){
-							instanceProcess(
-								childField, childIdx,
-								function(){
-									it2.next();
-								}
-							);
-						},
-						function(){
-							callback();
-						}
-					);
-				},
-				function(){
-					callback();
-				}
-			);
+			each(row, function(){
+
+				it79.ary(
+					row.fields,
+					function( it1, childFields, childsIdx ){
+						it79.ary(
+							childFields,
+							function( it2, childField, childIdx ){
+
+								instanceProcess(
+									childField, childIdx,
+									function(){
+										it2.next();
+									}
+								);
+							},
+							function(){
+								callback();
+							}
+						);
+					},
+					function(){
+						callback();
+					}
+				);
+			});
 
 		}
 

@@ -1,0 +1,12 @@
+{
+	"name": "Dropdown-text",
+	"interface": {
+		"fields": {
+			"text":{
+				"fieldType": "input",
+				"type":"text",
+				"rows":1
+			}
+		}
+	}
+}
