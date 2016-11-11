@@ -1,52 +1,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<title></title>
+		<title>sample page</title>
 	</head>
 	<body>
 		<div data-contents="main">
-
-<div class="cols unit">
-	<div class="cols-col cols-1of2"><div class="cols-pad">
-<div class="cols unit">
-	<div class="cols-col cols-1of2"><div class="cols-pad">
-<p>4からむ、ではありません。</p>
-
-
-	</div></div>
-	<div class="cols-col cols-1of2 cols-last"><div class="cols-pad">
-<p>4からむ、ではありません。</p>
-
-
-	</div></div>
-</div><!-- / .cols -->
-
-	</div></div>
-	<div class="cols-col cols-1of2 cols-last"><div class="cols-pad">
-<div class="cols unit">
-	<div class="cols-col cols-1of2"><div class="cols-pad">
-<p>4からむ、ではありません。</p>
-
-
-	</div></div>
-	<div class="cols-col cols-1of2 cols-last"><div class="cols-pad">
-<p>4からむ、ではありません。</p>
-
-
-	</div></div>
-</div><!-- / .cols -->
-
-	</div></div>
-</div><!-- / .cols -->
-
-		</div>
+<p class="finalized" style="color: #f00;">finalized</p><div>
+    <p>custom1 field</p>
+テスト1
+    <p>/custom1 field</p>
+</div>
+<p class="finalized" style="color: #00f;">finalized</p>
+		</div><!-- /main -->
 		<div data-contents="secondly">
-		</div>
+<p class="finalized" style="color: #f00;">finalized</p><div>
+    <p>custom1 field</p>
+テスト2
+    <p>/custom1 field</p>
+</div>
+<p class="finalized" style="color: #00f;">finalized</p>
+		</div><!-- /secondly -->
 	</body>
-</html>
-
-<script data-broccoli-receive-message="yes">
+</html><script data-broccoli-receive-message="yes">
 window.addEventListener('message',(function() {
 return function f(event) {
 if(event.origin!='http://127.0.0.1:8080'){return;}// <- check your own server's origin.

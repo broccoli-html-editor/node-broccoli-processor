@@ -5,82 +5,30 @@
    "fields": {
     "main": [
      {
-      "modId": "FESS:units/cols2",
+      "modId": "testMod1:dev/custom1",
       "fields": {
-       "column1": [
-        {
-         "modId": "FESS:units/cols2",
-         "fields": {
-          "column1": [
-           {
-            "modId": "PlainHTMLElements:PlainHTML/MultiText",
-            "fields": {
-             "main": {
-              "src": "4からむ、ではありません。",
-              "editor": "markdown"
-             }
-            },
-            "anchor": "",
-            "dec": ""
-           }
-          ],
-          "column2": [
-           {
-            "modId": "PlainHTMLElements:PlainHTML/MultiText",
-            "fields": {
-             "main": {
-              "src": "4からむ、ではありません。",
-              "editor": "markdown"
-             }
-            },
-            "anchor": "",
-            "dec": ""
-           }
-          ]
-         }
-        }
-       ],
-       "column2": [
-        {
-         "modId": "FESS:units/cols2",
-         "fields": {
-          "column1": [
-           {
-            "modId": "PlainHTMLElements:PlainHTML/MultiText",
-            "fields": {
-             "main": {
-              "src": "4からむ、ではありません。",
-              "editor": "markdown"
-             }
-            },
-            "anchor": "",
-            "dec": ""
-           }
-          ],
-          "column2": [
-           {
-            "modId": "PlainHTMLElements:PlainHTML/MultiText",
-            "fields": {
-             "main": {
-              "src": "4からむ、ではありません。",
-              "editor": "markdown"
-             }
-            },
-            "anchor": "",
-            "dec": ""
-           }
-          ]
-         }
-        }
-       ]
-      }
+       "main": "テスト1"
+      },
+      "anchor": "",
+      "dec": ""
      }
     ]
    }
   },
   "secondly": {
    "modId": "_sys/root",
-   "fields": {}
+   "fields": {
+    "main": [
+     {
+      "modId": "testMod1:dev/custom1",
+      "fields": {
+       "main": "テスト2"
+      },
+      "anchor": "",
+      "dec": ""
+     }
+    ]
+   }
   }
  }
 }
