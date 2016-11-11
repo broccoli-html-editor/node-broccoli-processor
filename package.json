@@ -5,7 +5,9 @@
   "main": "libs/main.js",
   "scripts": {
     "preinstall": "git submodule update --init --recursive --force",
-    "start": "gulp watch",
+    "start": "node ./tests/testdata/app/server/server.js;",
+    "up": "node ./tests/testdata/app/server/server.js;",
+    "preview": "gulp preview;",
     "submodules-update": "rm -rfv node_modules/broccoli-html-editor; npm install; gulp;",
     "test": "mocha --ui tdd ./tests/"
   },
@@ -27,8 +29,13 @@
     "utils79": "^0.0.1"
   },
   "devDependencies": {
+    "body-parser": "^1.15.2",
     "broccoli-html-editor": "file:submodules/broccoli-html-editor",
+    "config": "^1.24.0",
+    "express": "^4.14.0",
     "gulp": "^3.9.1",
-    "mocha": "^2.5.3"
+    "jquery": "^3.1.1",
+    "mocha": "^2.5.3",
+    "url-parse": "^1.1.7"
   }
 }

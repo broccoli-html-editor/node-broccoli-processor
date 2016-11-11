@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div data-contents="main">
+
 <div class="cols unit">
 	<div class="cols-col cols-1of2"><div class="cols-pad">
 <div class="cols unit">
@@ -31,8 +40,19 @@
 	</div></div>
 </div><!-- / .cols -->
 
+		</div>
+		<div data-contents="secondly">
+		</div>
+	</body>
+</html>
 
-<?php ob_start(); ?>
-
-<?php $px->bowl()->send( ob_get_clean(), "secondly" ); ?>
-
+<script data-broccoli-receive-message="yes">
+window.addEventListener('message',(function() {
+return function f(event) {
+if(event.origin!='http://127.0.0.1:8080'){return;}// <- check your own server's origin.
+var s=document.createElement('script');
+document.querySelector('body').appendChild(s);s.src=event.data.scriptUrl;
+window.removeEventListener('message', f, false);
+}
+})(),false);
+</script>
