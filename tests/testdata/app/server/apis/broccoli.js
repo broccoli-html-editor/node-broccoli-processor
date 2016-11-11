@@ -19,6 +19,7 @@ module.exports = function(){
 			{
 				'appMode': 'web', // 'web' or 'desktop'. default to 'web'
 				'paths_module_template': {
+					'PlainHTMLElements': require('path').resolve(__dirname, '../../PlainHTMLElements/') ,
 					'testMod1': require('path').resolve(__dirname, '../../modules1/') ,
 					'testMod2': require('path').resolve(__dirname, '../../modules2/')
 				} ,
@@ -68,8 +69,8 @@ module.exports = function(){
 			},
 			function(){
 				broccoli.gpi(
-					req.body.data.api,
-					req.body.data.options,
+					JSON.parse(req.body.api),
+					JSON.parse(req.body.options),
 					function(value){
 						res
 							.status(200)

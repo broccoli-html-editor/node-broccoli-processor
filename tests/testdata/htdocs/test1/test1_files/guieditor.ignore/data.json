@@ -3,31 +3,13 @@
   "main": {
    "modId": "_sys/root",
    "fields": {
-    "main": [
-     {
-      "modId": "testMod1:dev/custom1",
-      "fields": {
-       "main": "テスト1"
-      },
-      "anchor": "",
-      "dec": ""
-     }
-    ]
+    "main": []
    }
   },
   "secondly": {
    "modId": "_sys/root",
    "fields": {
-    "main": [
-     {
-      "modId": "testMod1:dev/custom1",
-      "fields": {
-       "main": "テスト2"
-      },
-      "anchor": "",
-      "dec": ""
-     }
-    ]
+    "main": []
    }
   }
  }

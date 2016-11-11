@@ -10,9 +10,9 @@ var Broccoli = require('broccoli-html-editor');
 function makeDefaultBroccoli(options, callback){
 	options = options||{};
 	var paths_module_template = options.paths_module_template || {
-		'PlainHTMLElements': '../PlainHTMLElements/',
-		'testMod1': '../modules1/',
-		'testMod2': '../modules2/'
+		'PlainHTMLElements': path.resolve(__dirname, './testdata/app/PlainHTMLElements/'),
+		'testMod1': path.resolve(__dirname, './testdata/app/modules1/'),
+		'testMod2': path.resolve(__dirname, './testdata/app/modules2/')
 	};
 	var contents_id = options.contents_id||'test1/test1';
 	// console.log(contents_id);
@@ -84,7 +84,7 @@ function makeDefaultBroccoli(options, callback){
 				fin += '<script data-broccoli-receive-message="yes">'+"\n";
 				fin += 'window.addEventListener(\'message\',(function() {'+"\n";
 				fin += 'return function f(event) {'+"\n";
-				fin += 'if(event.origin!=\'http://127.0.0.1:8088\'){return;}// <- check your own server\'s origin.'+"\n";
+				fin += 'if(event.origin!=\'http://127.0.0.1:8080\'){return;}// <- check your own server\'s origin.'+"\n";
 				fin += 'var s=document.createElement(\'script\');'+"\n";
 				fin += 'document.querySelector(\'body\').appendChild(s);s.src=event.data.scriptUrl;'+"\n";
 				fin += 'window.removeEventListener(\'message\', f, false);'+"\n";
@@ -114,8 +114,8 @@ describe('再帰検索のテスト', function() {
 			// console.log(broccoli.paths_module_template);
 
 			assert.equal(typeof(broccoli.paths_module_template), typeof({}));
-			assert.equal(broccoli.paths_module_template.testMod1, path.resolve(__dirname,'testdata/modules1/')+'/');
-			assert.equal(broccoli.paths_module_template.testMod2, path.resolve(__dirname,'testdata/modules2/')+'/');
+			assert.equal(broccoli.paths_module_template.testMod1, path.resolve(__dirname,'testdata/app/modules1/')+'/');
+			assert.equal(broccoli.paths_module_template.testMod2, path.resolve(__dirname,'testdata/app/modules2/')+'/');
 
 			done();
 		} );

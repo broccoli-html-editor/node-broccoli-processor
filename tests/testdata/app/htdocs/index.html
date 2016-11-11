@@ -57,10 +57,8 @@ broccoli.init(
 				"type": 'post',
 				'data': {
 					'page_path':'/test1/test1.html',
-					'data':{
-						'api': api ,
-						'options': options
-					}
+					'api': JSON.stringify(api) ,
+					'options': JSON.stringify(options)
 				},
 				"success": function(data){
 					// console.log(data);
