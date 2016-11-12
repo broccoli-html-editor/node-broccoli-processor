@@ -1,0 +1,25 @@
+{
+ "bowl": {
+  "main": {
+   "modId": "_sys/root",
+   "fields": {
+    "main": [
+     {
+      "modId": "PlainHTMLElements:PlainHTML/HTML",
+      "fields": {
+       "main": "<h2>test2</h2>"
+      },
+      "anchor": "",
+      "dec": ""
+     }
+    ]
+   }
+  },
+  "secondly": {
+   "modId": "_sys/root",
+   "fields": {
+    "main": []
+   }
+  }
+ }
+}

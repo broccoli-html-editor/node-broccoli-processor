@@ -3,13 +3,47 @@
   "main": {
    "modId": "_sys/root",
    "fields": {
-    "main": []
+    "main": [
+     {
+      "modId": "PlainHTMLElements:PlainHTML/MultiText",
+      "fields": {
+       "main": {
+        "src": "## test1",
+        "editor": "markdown"
+       }
+      }
+     },
+     {
+      "modId": "PlainHTMLElements:PlainHTML/image",
+      "fields": {
+       "href": "",
+       "image_src": {
+        "resKey": "d9c95348405663cc16751eddc37d4f37",
+        "path": "./test1_files/resources/IMG_0125.gif",
+        "resType": "",
+        "webUrl": ""
+       },
+       "alt_text": ""
+      },
+      "anchor": "",
+      "dec": ""
+     }
+    ]
    }
   },
   "secondly": {
    "modId": "_sys/root",
    "fields": {
-    "main": []
+    "main": [
+     {
+      "modId": "PlainHTMLElements:PlainHTML/HTML",
+      "fields": {
+       "main": ""
+      },
+      "anchor": "",
+      "dec": ""
+     }
+    ]
    }
   }
  }

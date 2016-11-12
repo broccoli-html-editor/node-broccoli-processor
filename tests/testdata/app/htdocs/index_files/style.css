@@ -1,0 +1,16 @@
+.outline{
+    display: flex;
+    height: 500px;
+}
+#instanceTreeView{
+	width: 20%;
+	height: 100%;
+}
+#canvas{
+	width: 60%;
+	height: 100%;
+}
+#palette{
+	width: 20%;
+	height: 100%;
+}

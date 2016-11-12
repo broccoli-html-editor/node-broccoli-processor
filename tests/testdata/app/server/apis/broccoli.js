@@ -40,6 +40,7 @@ module.exports = function(){
 					fin += '<html>'+"\n";
 					fin += '	<head>'+"\n";
 					fin += '		<title>sample page</title>'+"\n";
+					fin += '		<style>img{max-width: 100%;}</style>'+"\n";
 					fin += '	</head>'+"\n";
 					fin += '	<body>'+"\n";
 					fin += '		<div data-contents="main">'+"\n";
