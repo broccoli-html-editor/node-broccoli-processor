@@ -38,7 +38,7 @@
      {
       "modId": "PlainHTMLElements:PlainHTML/HTML",
       "fields": {
-       "main": ""
+       "main": "<p>test1</p>"
       },
       "anchor": "",
       "dec": ""
