@@ -6,7 +6,7 @@ var Promise = require("es6-promise").Promise;
 var BroccoliProcessor = require("../libs/main.js");
 var makeBroccoli = require('./helper/makeBroccoli.js');
 
-describe('再帰検索のテスト', function() {
+describe('data.json 構造の再帰検索', function() {
 
 	it("broccoli インスタンス初期化", function(done) {
 		this.timeout(60*1000);
@@ -24,7 +24,7 @@ describe('再帰検索のテスト', function() {
 		} );
 	});
 
-	it("再帰的に検索する", function(done) {
+	it("data.json 構造を再帰的に検索する", function(done) {
 		this.timeout(60*1000);
 
 		makeBroccoli( {}, function(broccoli){

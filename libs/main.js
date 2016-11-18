@@ -17,39 +17,53 @@ module.exports = function(broccoli, options){
 		// console.log(this.options);
 		var json = fs.readFileSync(this.broccoli.realpathDataDir+'/data.json').toString();
 		json = JSON.parse(json);
-		console.log(json);
+		// console.log(json);
 
 		function instanceProcess( row, idx, callback ){
-			console.log(row);
-			console.log(idx);
+			// console.log(typeof(row));
+			// console.log(row);
+			// console.log(idx);
+			var modId = row.modId;
+			var subModName = row.subModName;
+			broccoli.getModule( modId, subModName, function(mod){
+				// console.log(mod);
+				each(row, function(){
 
-			each(row, function(){
-
-				it79.ary(
-					row.fields,
-					function( it1, childFields, childsIdx ){
-						it79.ary(
-							childFields,
-							function( it2, childField, childIdx ){
-
-								instanceProcess(
-									childField, childIdx,
-									function(){
-										it2.next();
+					it79.ary(
+						row.fields,
+						function( it1, childFields, childsIdx ){
+							// console.log(childsIdx);
+							// console.log(childFields, childsIdx);
+							it79.ary(
+								childFields,
+								function( it2, childField, childIdx ){
+									// console.log(childField);
+									// console.log(childField, childIdx);
+									// console.log(childField.modId);
+									// console.log(childIdx);
+									if( childField.modId !== undefined && childField.fields !== undefined ){
+										instanceProcess(
+											childField, childIdx,
+											function(){
+												it2.next();
+											}
+										);
+										return;
 									}
-								);
-							},
-							function(){
-								callback();
-							}
-						);
-					},
-					function(){
-						callback();
-					}
-				);
-			});
+									it2.next();
+								},
+								function(){
+									callback();
+								}
+							);
+						},
+						function(){
+							callback();
+						}
+					);
+				});
 
+			} );
 		}
 
 		it79.ary(
@@ -58,6 +72,7 @@ module.exports = function(broccoli, options){
 				it79.ary(
 					row,
 					function( it2, row2, idx2 ){
+						// console.log(row2, idx2);
 						instanceProcess(
 							row2, idx2,
 							function(){
