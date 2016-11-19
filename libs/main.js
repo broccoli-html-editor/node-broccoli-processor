@@ -19,13 +19,14 @@ module.exports = function(broccoli, options){
 	/**
 	 * 再帰処理
 	 */
-	function instanceProcessRecursive( each, row, idx, callback ){
+	function instanceProcessRecursive( instancePath, each, row, idx, callback ){
 		callback = callback || function(){console.error('callback was not given.');};
 
 		var modId = row.modId;
 		var subModName = row.subModName;
 
 		var instanceEditor = new InstanceEditor(
+			instancePath ,
 			resourceMgr ,
 			function(){
 				row = instanceEditor.getInstance();
@@ -44,6 +45,7 @@ module.exports = function(broccoli, options){
 								// console.log(childIdx);
 								if( childField.modId !== undefined && childField.fields !== undefined ){
 									instanceProcessRecursive(
+										instancePath+'/fields.'+childsIdx+'@'+childIdx,
 										each,
 										childField, childIdx,
 										function(result){
@@ -100,6 +102,7 @@ module.exports = function(broccoli, options){
 									function( it3, row3, idx3 ){
 										// console.log(row3, idx3);
 										instanceProcessRecursive(
+											'/bowl.'+idx3,
 											row1.content,
 											row3, idx3,
 											function(result){

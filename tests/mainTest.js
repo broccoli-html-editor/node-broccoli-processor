@@ -34,6 +34,8 @@ describe('data.json 構造の再帰検索', function() {
 				.each(function( editor ){
 					// console.log(editor);
 					// console.log(editor.resourceMgr);
+					var instancePath = editor.getInstancePath();
+					// console.log(instancePath);
 					var data = editor.getInstance();
 					if(data.modId == 'PlainHTMLElements:PlainHTML/HTML'){
 						data.fields.main += '<p>replace test</p>';
