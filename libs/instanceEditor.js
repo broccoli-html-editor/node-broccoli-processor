@@ -1,7 +1,7 @@
 /**
  * broccoli-processor/instanceEditor.js
  */
-module.exports = function(instancePath, resourceMgr, done){
+module.exports = function(instancePath, resourceMgr, logger, done){
 	var instance = {};
 	this.resourceMgr = resourceMgr;
 
@@ -18,5 +18,10 @@ module.exports = function(instancePath, resourceMgr, done){
 		instance = val;
 		return true;
 	}
+	/** ログを記録 */
+	this.log = function(val){
+		return logger.log( instancePath, val );
+	}
+	/** インスタンスの編集終了を宣言する */
 	this.done = done;
 }

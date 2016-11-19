@@ -7,7 +7,8 @@ module.exports = function(broccoli, options){
 	var Promise = require("es6-promise").Promise;
 	var it79 = require('iterate79');
 	var resourceMgr = new (require('./resourceMgr.js'))(broccoli);
-	var InstanceEditor = require('./indtanceEditor.js');
+	var InstanceEditor = require('./instanceEditor.js');
+	var logger = new(require('./logger.js'))();
 	this.broccoli = broccoli;
 	this.options = options;
 
@@ -28,6 +29,7 @@ module.exports = function(broccoli, options){
 		var instanceEditor = new InstanceEditor(
 			instancePath ,
 			resourceMgr ,
+			logger ,
 			function(){
 				row = instanceEditor.getInstance();
 
@@ -138,12 +140,25 @@ module.exports = function(broccoli, options){
 	}
 
 	/**
-	 * 変更した結果を保存してリビルド
+	 * 変更を実行するが、保存はしない
+	 */
+	this.dryrun = function(callback){
+		callback = callback || function(){};
+
+		executeAll(function(){
+			callback( logger.getAll() );
+		});
+
+		return this;
+	}
+
+	/**
+	 * 変更を実行し、結果を保存してリビルド
 	 */
 	this.run = function(callback){
 		callback = callback || function(){};
 
-		executeAll(function(){
+		this.dryrun(function( logs ){
 
 			// 加工されたデータを保存してリビルド
 			var jsonString = JSON.stringify(broccoliProcessor.dataJson, null, 1);
@@ -156,7 +171,7 @@ module.exports = function(broccoli, options){
 						resourceDb ,
 						function(result){
 							broccoli.updateContents(function(result){
-								callback(result);
+								callback( logger.getAll() );
 								return;
 							});
 						}

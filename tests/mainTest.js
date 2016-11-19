@@ -44,10 +44,19 @@ describe('data.json 構造の再帰検索', function() {
 						editor.resourceMgr.setResourceInfo('d9c95348405663cc16751eddc37d4f37', res);
 					}
 					editor.setInstance(data);
+					editor.log(instancePath);
+					editor.log(data);
+					editor.log(editor.resourceMgr);
+					editor.log([1,2,3]);
+					editor.log(120);
+					editor.log(false);
+					editor.log(null);
+					editor.log(undefined);
 					editor.done();
 				})
-				.run(function(result){
-					assert.ok(result);
+				.run(function(logs){
+					// console.log(logs);
+					assert.ok(logs);
 					done();
 				})
 			;
