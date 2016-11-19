@@ -1,6 +1,6 @@
 {
   "name": "broccoli-processor",
-  "version": "0.0.1-alpha.1+nb",
+  "version": "0.0.1-alpha.1",
   "description": "Contents processor for broccoli-html-editor.",
   "main": "libs/main.js",
   "scripts": {
