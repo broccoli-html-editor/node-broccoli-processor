@@ -28,30 +28,21 @@ describe('data.json 構造の再帰検索', function() {
 		this.timeout(10*1000);
 
 		makeBroccoli( {}, function(broccoli){
-			// console.log(broccoli.options.documentRoot);
-			// console.log(broccoli.realpathHtml);
-			// console.log(broccoli.paths_module_template);
 
 			var broccoliProcessor = new BroccoliProcessor(broccoli, {});
-			broccoliProcessor.each(
-				function( data, next ){
+			broccoliProcessor
+				.each(function( data, next ){
 					// console.log(data);
 					if(data.modId == 'PlainHTMLElements:PlainHTML/HTML'){
 						data.fields.main += '<p>replace test</p>';
 					}
 					next();
-				},
-				function(result){
+				})
+				.run(function(result){
 					assert.ok(result);
-
-					broccoliProcessor.save(function(result){
-						assert.ok(result);
-						console.log('finished.');
-						done();
-					});
-					return;
-				}
-			);
+					done();
+				})
+			;
 			return;
 		} );
 		return;
