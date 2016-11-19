@@ -33,9 +33,13 @@ describe('data.json 構造の再帰検索', function() {
 			broccoliProcessor
 				.each(function( editor ){
 					// console.log(editor);
+					// console.log(editor.resourceMgr);
 					var data = editor.getInstance();
 					if(data.modId == 'PlainHTMLElements:PlainHTML/HTML'){
 						data.fields.main += '<p>replace test</p>';
+						var res = editor.resourceMgr.getResourceInfo('d9c95348405663cc16751eddc37d4f37');
+						res.fieldNote.test = 1;
+						editor.resourceMgr.setResourceInfo('d9c95348405663cc16751eddc37d4f37', res);
 					}
 					editor.setInstance(data);
 					editor.done();

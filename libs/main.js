@@ -6,6 +6,7 @@ module.exports = function(broccoli, options){
 	var fs = require('fs');
 	var Promise = require("es6-promise").Promise;
 	var it79 = require('iterate79');
+	var resourceMgr = new (require('./resourceMgr.js'))(broccoli);
 	var InstanceEditor = require('./indtanceEditor.js');
 	this.broccoli = broccoli;
 	this.options = options;
@@ -24,8 +25,9 @@ module.exports = function(broccoli, options){
 		var modId = row.modId;
 		var subModName = row.subModName;
 
-		var instanceEditor = new InstanceEditor({
-			'done': function(){
+		var instanceEditor = new InstanceEditor(
+			resourceMgr ,
+			function(){
 				row = instanceEditor.getInstance();
 
 				it79.ary(
@@ -63,7 +65,7 @@ module.exports = function(broccoli, options){
 					}
 				);
 			}
-		});
+		);
 		instanceEditor.setInstance(row);
 
 		each(instanceEditor);
@@ -124,6 +126,7 @@ module.exports = function(broccoli, options){
 				}
 			},
 			function(){
+				commands = []; // reset
 				callback();
 				return;
 			}
@@ -138,19 +141,26 @@ module.exports = function(broccoli, options){
 		callback = callback || function(){};
 
 		executeAll(function(){
-			var jsonString = JSON.stringify(broccoliProcessor.dataJson, null, 1);
 
-			// データを保存してリビルド
+			// 加工されたデータを保存してリビルド
+			var jsonString = JSON.stringify(broccoliProcessor.dataJson, null, 1);
 			fs.writeFile(
 				broccoli.realpathDataDir+'/data.json' ,
 				jsonString ,
 				function(){
-					broccoli.updateContents(function(result){
-						callback(result);
-						return;
-					});
+					var resourceDb = resourceMgr.getResourceDb();
+					broccoli.resourceMgr.save(
+						resourceDb ,
+						function(result){
+							broccoli.updateContents(function(result){
+								callback(result);
+								return;
+							});
+						}
+					);
 				}
 			);
+
 		});
 
 		return this;

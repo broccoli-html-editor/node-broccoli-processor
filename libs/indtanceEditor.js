@@ -1,8 +1,9 @@
 /**
  * broccoli-processor/instanceEditor.js
  */
-module.exports = function(options){
-	var instance = options.instance;
+module.exports = function(resourceMgr, done){
+	var instance = {};
+	this.resourceMgr = resourceMgr;
 
 	/** インスタンスデータを取得 */
 	this.getInstance = function(){
@@ -13,5 +14,5 @@ module.exports = function(options){
 		instance = val;
 		return true;
 	}
-	this.done = options.done;
+	this.done = done;
 }
