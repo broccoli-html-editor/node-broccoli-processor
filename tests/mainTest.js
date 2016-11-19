@@ -31,12 +31,14 @@ describe('data.json 構造の再帰検索', function() {
 
 			var broccoliProcessor = new BroccoliProcessor(broccoli, {});
 			broccoliProcessor
-				.each(function( data, next ){
-					// console.log(data);
+				.each(function( editor ){
+					// console.log(editor);
+					var data = editor.getInstance();
 					if(data.modId == 'PlainHTMLElements:PlainHTML/HTML'){
 						data.fields.main += '<p>replace test</p>';
 					}
-					next();
+					editor.setInstance(data);
+					editor.done();
 				})
 				.run(function(result){
 					assert.ok(result);

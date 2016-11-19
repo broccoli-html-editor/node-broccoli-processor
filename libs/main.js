@@ -6,6 +6,7 @@ module.exports = function(broccoli, options){
 	var fs = require('fs');
 	var Promise = require("es6-promise").Promise;
 	var it79 = require('iterate79');
+	var InstanceEditor = require('./indtanceEditor.js');
 	this.broccoli = broccoli;
 	this.options = options;
 
@@ -22,9 +23,10 @@ module.exports = function(broccoli, options){
 
 		var modId = row.modId;
 		var subModName = row.subModName;
-		broccoli.getModule( modId, subModName, function(mod){
-			// console.log(mod);
-			each(row, function(){
+
+		var instanceEditor = new InstanceEditor({
+			'done': function(){
+				row = instanceEditor.getInstance();
 
 				it79.ary(
 					row.fields,
@@ -42,7 +44,8 @@ module.exports = function(broccoli, options){
 									instanceProcessRecursive(
 										each,
 										childField, childIdx,
-										function(){
+										function(result){
+											childField = result;
 											it2.next();
 										}
 									);
@@ -56,12 +59,15 @@ module.exports = function(broccoli, options){
 						);
 					},
 					function(){
-						callback();
+						callback(row);
 					}
 				);
-			});
+			}
+		});
+		instanceEditor.setInstance(row);
 
-		} );
+		each(instanceEditor);
+		return;
 	}
 
 	/**
@@ -94,7 +100,8 @@ module.exports = function(broccoli, options){
 										instanceProcessRecursive(
 											row1.content,
 											row3, idx3,
-											function(){
+											function(result){
+												row3 = result;
 												it3.next();
 											}
 										);
