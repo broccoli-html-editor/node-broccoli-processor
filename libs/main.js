@@ -9,20 +9,19 @@ module.exports = function(broccoli, options){
 	this.broccoli = broccoli;
 	this.options = options;
 
+	this.dataJson = fs.readFileSync(broccoli.realpathDataDir+'/data.json').toString();
+	this.dataJson = JSON.parse(this.dataJson);
+
 	/**
 	 * すべてのインスタンスを再帰的に処理する
 	 */
 	this.each = function(each, callback){
-		callback = callback || function(){};
+		callback = callback || function(){console.error('callback was not given.');};
 		// console.log(this.options);
-		var json = fs.readFileSync(this.broccoli.realpathDataDir+'/data.json').toString();
-		json = JSON.parse(json);
-		// console.log(json);
 
 		function instanceProcess( row, idx, callback ){
-			// console.log(typeof(row));
-			// console.log(row);
-			// console.log(idx);
+			callback = callback || function(){console.error('callback was not given.');};
+
 			var modId = row.modId;
 			var subModName = row.subModName;
 			broccoli.getModule( modId, subModName, function(mod){
@@ -53,7 +52,7 @@ module.exports = function(broccoli, options){
 									it2.next();
 								},
 								function(){
-									callback();
+									it1.next();
 								}
 							);
 						},
@@ -67,7 +66,7 @@ module.exports = function(broccoli, options){
 		}
 
 		it79.ary(
-			json,
+			this.dataJson,
 			function( it1, row, idx ){
 				it79.ary(
 					row,
@@ -81,12 +80,35 @@ module.exports = function(broccoli, options){
 						);
 					},
 					function(){
-						callback();
+						it1.next();
 					}
 				);
 			},
 			function(){
-				callback();
+				callback(true);
+				return;
+			}
+		);
+
+		return;
+	}
+
+
+	/**
+	 * 変更した結果を保存してリビルド
+	 */
+	this.save = function(callback){
+		callback = callback || function(){};
+		var jsonString = JSON.stringify(this.dataJson, null, 1);
+
+		fs.writeFile(
+			broccoli.realpathDataDir+'/data.json' ,
+			jsonString ,
+			function(){
+				broccoli.updateContents(function(result){
+					callback(result);
+					return;
+				});
 			}
 		);
 

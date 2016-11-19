@@ -9,7 +9,7 @@ var makeBroccoli = require('./helper/makeBroccoli.js');
 describe('data.json 構造の再帰検索', function() {
 
 	it("broccoli インスタンス初期化", function(done) {
-		this.timeout(60*1000);
+		this.timeout(10*1000);
 
 		makeBroccoli( {}, function(broccoli){
 			// console.log(broccoli.options.documentRoot);
@@ -25,7 +25,7 @@ describe('data.json 構造の再帰検索', function() {
 	});
 
 	it("data.json 構造を再帰的に検索する", function(done) {
-		this.timeout(60*1000);
+		this.timeout(10*1000);
 
 		makeBroccoli( {}, function(broccoli){
 			// console.log(broccoli.options.documentRoot);
@@ -35,17 +35,26 @@ describe('data.json 構造の再帰検索', function() {
 			var broccoliProcessor = new BroccoliProcessor(broccoli, {});
 			broccoliProcessor.each(
 				function( data, next ){
-					console.log(data);
+					// console.log(data);
+					if(data.modId == 'PlainHTMLElements:PlainHTML/HTML'){
+						data.fields.main += '<p>replace test</p>';
+					}
 					next();
 				},
-				function(){
-					console.log('finished.');
-					assert.equal(1, 1);
+				function(result){
+					assert.ok(result);
+
+					broccoliProcessor.save(function(result){
+						assert.ok(result);
+						console.log('finished.');
+						done();
+					});
+					return;
 				}
 			);
-
-			done();
+			return;
 		} );
+		return;
 
 	});
 });
