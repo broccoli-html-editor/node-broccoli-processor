@@ -14,25 +14,34 @@ var Broccoli = require('broccoli-html-editor');
 
 var broccoli = new Broccoli();
 broccoli.init(
-    {},
+    {
+        /* Any options for broccoli-html-editor */
+    },
     function(){
         var broccoliProcessor = new BroccoliProcessor(broccoli, {});
         broccoliProcessor
-            .each(
-                function( data, next ){
-                    console.log(data);
-                    next();
-                },
-                function(){
-                    console.log('finished.');
-                    assert.equal(1, 1);
-                }
-            )
+            .each(function( editor ){
+                console.log(editor);
+                editor.done();
+            })
+            .run(function(logs){
+                console.log('finished.');
+            })
         ;
     }
 );
-
 ```
+
+## Change log
+
+### broccoli-processor@0.0.1-alpha.2 (2016-xx-xx)
+
+- ???????????????????????????
+
+### broccoli-processor@0.0.1-alpha.1 (2016-11-19)
+
+- Initial release.
+
 
 ## ライセンス - License
 
