@@ -21,6 +21,13 @@ broccoli.init(
         var broccoliProcessor = new BroccoliProcessor(broccoli, {});
         broccoliProcessor
             .each(function( editor ){
+                // APIs
+                // - editor.getBroccoli()
+                // - editor.getInstancePath()
+                // - editor.getInstance()
+                // - editor.setInstance(instance)
+                // - editor.log(val)
+                // - editor.done()
                 console.log(editor);
                 editor.done();
             })
@@ -36,7 +43,7 @@ broccoli.init(
 
 ### broccoli-processor@0.0.1-alpha.2 (2016-xx-xx)
 
-- ???????????????????????????
+- `editor.getBroccoli()` を追加。
 
 ### broccoli-processor@0.0.1-alpha.1 (2016-11-19)
 

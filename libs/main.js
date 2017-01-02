@@ -27,6 +27,7 @@ module.exports = function(broccoli, options){
 		var subModName = row.subModName;
 
 		var instanceEditor = new InstanceEditor(
+			broccoli ,
 			instancePath ,
 			resourceMgr ,
 			logger ,

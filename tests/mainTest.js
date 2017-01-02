@@ -44,6 +44,12 @@ describe('data.json 構造の再帰検索', function() {
 						editor.resourceMgr.setResourceInfo('d9c95348405663cc16751eddc37d4f37', res);
 					}
 					editor.setInstance(data);
+
+					var broccoli = editor.getBroccoli();
+					assert.equal(typeof(broccoli), typeof({}));
+					var mod = broccoli.getModule('PlainHTMLElements:PlainHTML/HTML');
+					assert.equal(typeof(mod), typeof({}));
+
 					editor.log(instancePath);
 					editor.log(data);
 					editor.log(editor.resourceMgr);
