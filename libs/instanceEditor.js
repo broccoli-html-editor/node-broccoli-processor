@@ -2,6 +2,10 @@
  * broccoli-processor/instanceEditor.js
  */
 module.exports = function(broccoli, instancePath, resourceMgr, logger, done){
+	this.supply = {};
+	this.supply.cheerio = require('cheerio');
+	this.supply.iterate79 = require('iterate79');
+
 	var instance = {};
 	this.resourceMgr = resourceMgr;
 
