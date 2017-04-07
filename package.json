@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pickles2/node-broccoli-processor.git"
+    "url": "git+https://github.com/broccoli-html-editor/node-broccoli-processor.git"
   },
   "author": "Tomoya Koyanagi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pickles2/node-broccoli-processor/issues"
+    "url": "https://github.com/broccoli-html-editor/node-broccoli-processor/issues"
   },
-  "homepage": "https://github.com/pickles2/node-broccoli-processor#readme",
+  "homepage": "https://github.com/broccoli-html-editor/node-broccoli-processor#readme",
   "dependencies": {
     "cheerio": "^0.22.0",
     "es6-promise": "^3.3.1",
