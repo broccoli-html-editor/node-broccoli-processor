@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "body-parser": "^1.15.2",
-    "broccoli-html-editor": "file:submodules/broccoli-html-editor",
+    "broccoli-html-editor": "git://github.com/broccoli-html-editor/broccoli-html-editor.git",
     "config": "^1.24.0",
     "express": "^4.14.0",
     "gulp": "^3.9.1",
