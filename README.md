@@ -18,7 +18,7 @@ broccoli.init(
         /* Any options for broccoli-html-editor */
     },
     function(){
-        var broccoliProcessor = new BroccoliProcessor(broccoli, {});
+        var broccoliProcessor = new BroccoliProcessor(broccoli);
         broccoliProcessor
             .each(function( editor ){
                 // APIs
@@ -42,13 +42,25 @@ broccoli.init(
 );
 ```
 
+## Options
+
+```js
+var broccoliProcessor = new BroccoliProcessor(broccoli, {
+    "rebuild": function(callback){
+        // Write here a process rebuilding Broccoli contents.
+        callback(true);
+    }
+});
+```
+
 ## Change log
 
-### broccoli-processor@0.0.1-alpha.2 (2016-xx-xx)
+### broccoli-processor@0.0.1-alpha.2 (2018-xx-xx)
 
 - `editor.getBroccoli()` を追加。
 - `editor.supply.cheerio` を追加。
 - `editor.supply.iterate79` を追加。
+- `options.rebuild()` を追加。
 
 ### broccoli-processor@0.0.1-alpha.1 (2016-11-19)
 
