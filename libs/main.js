@@ -10,7 +10,8 @@ module.exports = function(broccoli, options){
 	var InstanceEditor = require('./instanceEditor.js');
 	var logger = new(require('./logger.js'))();
 	this.broccoli = broccoli;
-	this.options = options;
+	this.options = options || {};
+	var _this = this;
 
 	this.dataJson = fs.readFileSync(broccoli.realpathDataDir+'/data.json').toString();
 	this.dataJson = JSON.parse(this.dataJson);
@@ -167,16 +168,25 @@ module.exports = function(broccoli, options){
 				broccoli.realpathDataDir+'/data.json' ,
 				jsonString ,
 				function(){
-					var resourceDb = resourceMgr.getResourceDb();
-					broccoli.resourceMgr.save(
-						resourceDb ,
-						function(result){
-							broccoli.updateContents(function(result){
-								callback( logger.getAll() );
-								return;
-							});
-						}
-					);
+					if(typeof(_this.options.rebuild) == typeof(function(){})){
+						// 与えられた リビルド関数 でリビルド
+						_this.options.rebuild(function(){
+							callback( logger.getAll() );
+							return;
+						});
+					}else{
+						// 与えられた broccoli オブジェクトでリビルド
+						var resourceDb = resourceMgr.getResourceDb();
+						broccoli.resourceMgr.save(
+							resourceDb ,
+							function(result){
+								broccoli.updateContents(function(result){
+									callback( logger.getAll() );
+									return;
+								});
+							}
+						);
+					}
 				}
 			);
 

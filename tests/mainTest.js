@@ -71,4 +71,34 @@ describe('data.json 構造の再帰検索', function() {
 		return;
 
 	});
+
+	it("rebuild option", function(done) {
+		this.timeout(10*1000);
+
+		makeBroccoli( {}, function(broccoli){
+
+			var callCount = 0;
+			var broccoliProcessor = new BroccoliProcessor(broccoli, {
+				"rebuild": function(callback){
+					callCount ++;
+					callback();
+				}
+			});
+			broccoliProcessor
+				.each(function( editor ){
+					editor.done();
+				})
+				.run(function(logs){
+					// console.log(logs);
+					assert.ok(logs);
+					assert.equal(callCount, 1);
+					done();
+				})
+			;
+			return;
+		} );
+		return;
+
+	});
+
 });
