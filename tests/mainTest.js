@@ -79,9 +79,10 @@ describe('data.json 構造の再帰検索', function() {
 
 			var callCount = 0;
 			var broccoliProcessor = new BroccoliProcessor(broccoli, {
+				// "jsonIndentSize": 4,
 				"rebuild": function(callback){
 					callCount ++;
-					callback();
+					callback(true);
 				}
 			});
 			broccoliProcessor

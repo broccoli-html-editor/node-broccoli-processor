@@ -46,10 +46,15 @@ broccoli.init(
 
 ```js
 var broccoliProcessor = new BroccoliProcessor(broccoli, {
+    "saveResourceDb": function(resourceDb, callback){
+        // Write here a process saving resourceDb.
+        callback(true);
+    },
     "rebuild": function(callback){
         // Write here a process rebuilding Broccoli contents.
         callback(true);
-    }
+    },
+    "jsonIndentSize": 1
 });
 ```
 
@@ -60,7 +65,9 @@ var broccoliProcessor = new BroccoliProcessor(broccoli, {
 - `editor.getBroccoli()` を追加。
 - `editor.supply.cheerio` を追加。
 - `editor.supply.iterate79` を追加。
-- `options.rebuild()` を追加。
+- オプション `rebuild()` を追加。
+- オプション `saveResourceDb()` を追加。
+- オプション `jsonIndentSize` を追加。
 
 ### broccoli-processor@0.0.1-alpha.1 (2016-11-19)
 

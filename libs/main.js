@@ -161,34 +161,77 @@ module.exports = function(broccoli, options){
 		callback = callback || function(){};
 
 		this.dryrun(function( logs ){
+			// console.log(logs);
 
-			// 加工されたデータを保存してリビルド
-			var jsonString = JSON.stringify(broccoliProcessor.dataJson, null, 1);
-			fs.writeFile(
-				broccoli.realpathDataDir+'/data.json' ,
-				jsonString ,
-				function(){
+			new Promise(function(rlv){rlv();})
+				.then(function(){ return new Promise(function(rlv, rjt){
+					// 加工されたデータを保存
+					var indentSize = 1;
+					if( _this.options.jsonIndentSize !== undefined ){
+						indentSize = _this.options.jsonIndentSize;
+					}
+					var jsonString = JSON.stringify(broccoliProcessor.dataJson, null, indentSize);
+					fs.writeFile(
+						broccoli.realpathDataDir+'/data.json' ,
+						jsonString ,
+						function(){
+							rlv();
+						}
+					);
+				}); })
+				.then(function(){ return new Promise(function(rlv, rjt){
+					var resourceDb = resourceMgr.getResourceDb();
+					if(typeof(_this.options.saveResourceDb) == typeof(function(){})){
+						// 与えられた リソース保存関数 でリソースを保存
+						_this.options.saveResourceDb(
+							resourceDb ,
+							function(result){
+								if(!result){
+									console.error('Failed to saving resourceDb: ' + broccoli.realpathDataDir+'data.json');
+								}
+								rlv();
+								return;
+							}
+						);
+					}else{
+						// 与えられた broccoli オブジェクトでリソースを保存
+						broccoli.resourceMgr.save(
+							resourceDb ,
+							function(result){
+								if(!result){
+									console.error('Failed to saving resourceDb: ' + broccoli.realpathDataDir+'data.json');
+								}
+								rlv();
+							}
+						);
+					}
+				}); })
+				.then(function(){ return new Promise(function(rlv, rjt){
 					if(typeof(_this.options.rebuild) == typeof(function(){})){
 						// 与えられた リビルド関数 でリビルド
-						_this.options.rebuild(function(){
-							callback( logger.getAll() );
+						_this.options.rebuild(function(result){
+							if(!result){
+								console.error('Failed to rebuild: ' + broccoli.realpathDataDir+'data.json');
+							}
+							rlv();
 							return;
 						});
 					}else{
 						// 与えられた broccoli オブジェクトでリビルド
-						var resourceDb = resourceMgr.getResourceDb();
-						broccoli.resourceMgr.save(
-							resourceDb ,
-							function(result){
-								broccoli.updateContents(function(result){
-									callback( logger.getAll() );
-									return;
-								});
+						broccoli.updateContents(function(result){
+							if(!result){
+								console.error('Failed to rebuild: ' + broccoli.realpathDataDir+'data.json');
 							}
-						);
+							rlv();
+							return;
+						});
 					}
-				}
-			);
+				}); })
+				.then(function(){ return new Promise(function(rlv, rjt){
+					callback( logger.getAll() );
+				}); })
+			;
+
 
 		});
 
