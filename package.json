@@ -4,11 +4,9 @@
   "description": "Contents processor for broccoli-html-editor.",
   "main": "libs/main.js",
   "scripts": {
-    "preinstall": "git submodule update --init --recursive --force",
     "start": "node ./tests/testdata/app/server/server.js;",
     "up": "node ./tests/testdata/app/server/server.js;",
     "preview": "gulp preview;",
-    "submodules-update": "rm -rfv node_modules/broccoli-html-editor; npm install; gulp;",
     "test": "mocha --ui tdd ./tests/"
   },
   "repository": {
